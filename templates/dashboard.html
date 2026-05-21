@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- 
+    ========================================
+    META TAGS
+    ========================================
+    -->
+
+    <!-- Defines character encoding for the webpage -->
+    <meta charset="UTF-8" />
+
+    <!-- Makes the webpage responsive on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title shown in browser tab -->
+    <title>Dashboard</title>
+
+    <!-- 
+    Linking external CSS file using Flask url_for()
+
+    url_for('static', filename='css/style.css')
+    dynamically generates correct file path
+    -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+
+  <body>
+
+    <!-- 
+    ========================================
+    MAIN DASHBOARD CONTAINER
+    ========================================
+    -->
+    <div class="dashboard-container">
+
+      <!-- Main heading -->
+      <h1>Dashboard</h1>
+
+      <!-- Small subtitle -->
+      <p class="subtitle">
+        Manage your collaborative coding sessions
+      </p>
+
+      <!-- 
+      ========================================
+      FLASH MESSAGE SECTION
+      ========================================
+
+      Flask flash messages are temporary messages
+      shown after actions like:
+      - room creation
+      - login
+      - errors
+      - successful operations
+      -->
+
+      {% with messages = get_flashed_messages() %}
+
+        <!-- Checks whether messages exist -->
+        {% if messages %}
+
+          <!-- Loop through all flash messages -->
+          {% for message in messages %}
+
+            <!-- Display single flash message -->
+            <div class="alert">
+              {{ message }}
+            </div>
+
+          {% endfor %}
+
+        {% endif %}
+
+      {% endwith %}
+
+
+      <!-- 
+      ========================================
+      DASHBOARD CARDS CONTAINER
+      ========================================
+      Holds:
+      - Create Room
+      - Join Room
+      - Your Rooms
+      -->
+      <div class="dashboard-cards">
+
+
+        <!-- 
+        ========================================
+        CREATE ROOM CARD
+        ========================================
+        -->
+        <div class="dashboard-card">
+
+          <!-- Card heading -->
+          <h2>Create Room</h2>
+
+          <!-- Description -->
+          <p>
+            Start a new collaborative coding room
+          </p>
+
+          <!-- 
+          Form sends POST request to backend route
+          /create-room
+          -->
+          <form action="/create-room" method="POST">
+
+            <!-- Input field for room name -->
+            <input
+              type="text"
+              name="room_name"
+              placeholder="Enter Room Name"
+            />
+
+            <!-- Submit button -->
+            <button type="submit" class="btn">
+              Create Room
+            </button>
+
+          </form>
+        </div>
+
+
+        <!-- 
+        ========================================
+        JOIN ROOM CARD
+        ========================================
+        -->
+        <div class="dashboard-card">
+
+          <!-- Card heading -->
+          <h2>Join Room</h2>
+
+          <!-- Description -->
+          <p>
+            Enter room code to join existing collaboration room
+          </p>
+
+          <!-- 
+          Sends room code to backend
+          -->
+          <form action="/join-room" method="POST">
+
+            <!-- Input field for room code -->
+            <input
+              type="text"
+              name="room_code"
+              placeholder="Enter Room Code"
+            />
+
+            <!-- Join room button -->
+            <button type="submit" class="btn">
+              Join Room
+            </button>
+
+          </form>
+        </div>
+
+
+        <!-- 
+        ========================================
+        YOUR ROOMS CARD
+        ========================================
+        Displays all rooms created/joined by user
+        -->
+        <div class="dashboard-card">
+
+          <!-- Card heading -->
+          <h2>Your Rooms</h2>
+
+          <!-- Room list -->
+          <ul class="project-list">
+
+            <!-- 
+            Flask loop to display all rooms
+
+            room structure example:
+            room[0] = room id
+            room[1] = room code
+            room[2] = room name
+            -->
+            {% for room in rooms %}
+
+            <!-- Single room item -->
+            <li class="room-item">
+
+              <!-- Room details wrapper -->
+              <div>
+
+                <!-- 
+                Room Link
+
+                Clicking redirects user to:
+                /room/<room_code>
+                -->
+                <a href="/room/{{ room[1] }}">
+
+                  <!-- Room Name -->
+                  {{ room[2] }}
+
+                </a>
+
+
+                <!-- 
+                ========================================
+                ROOM CODE SECTION
+                ========================================
+                -->
+                <div class="room-code-section">
+
+                  <!-- Display room code -->
+                  <p class="room-code">
+
+                    Code:
+
+                    <!-- Bold room code -->
+                    <strong>
+
+                      {{ room[1] }}
+
+                    </strong>
+
+                  </p>
+
+                </div>
+
+
+                <!-- 
+                ========================================
+                DELETE ROOM FORM
+                ========================================
+
+                Sends POST request to delete room
+                -->
+                <form
+                  action="/delete-room/{{ room[0] }}"
+                  method="POST"
+                >
+
+                  <!-- Delete button -->
+                  <button
+                    type="submit"
+                    class="delete-btn"
+                  >
+
+                    Delete
+
+                  </button>
+
+                </form>
+
+              </div>
+
+            </li>
+
+            <!-- End Flask loop -->
+            {% endfor %}
+
+          </ul>
+        </div>
+
+      </div>
+
+
+      <!-- 
+      ========================================
+      BOTTOM BUTTONS SECTION
+      ========================================
+      -->
+      <div class="buttons">
+
+        <!-- 
+        Logout Button
+
+        url_for('logout')
+        dynamically creates logout route URL
+        -->
+        <a
+          href="{{ url_for('logout') }}"
+          class="btn logout-btn"
+        >
+
+          Logout
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,653 @@
+/* 
+========================================
+UNIVERSAL SELECTOR
+========================================
+Applies styles to ALL elements
+*/
+* {
+
+    /* Removes default margin from all elements */
+    margin: 0;
+
+    /* Removes default padding from all elements */
+    padding: 0;
+
+    /* Makes width & height calculations easier */
+    box-sizing: border-box;
+}
+
+
+/* 
+========================================
+BODY STYLING
+========================================
+Main page styling
+*/
+body {
+
+    /* Dark navy background */
+    background-color: #0f172a;
+
+    /* Default text color */
+    color: white;
+
+    /* Font for entire application */
+    font-family: Arial, sans-serif;
+
+    /* Flexbox layout */
+    display: flex;
+
+    /* Horizontally centers content */
+    justify-content: center;
+
+    /* Vertically centers content */
+    align-items: center;
+
+    /* Full screen height */
+    height: 100vh;
+}
+
+
+/* 
+========================================
+AUTH CONTAINER
+========================================
+Used for:
+- Login page
+- Register page
+*/
+.container {
+
+    /* Dark card background */
+    background-color: #1e293b;
+
+    /* Space inside container */
+    padding: 40px;
+
+    /* Fixed width */
+    width: 400px;
+
+    /* Rounded corners */
+    border-radius: 12px;
+
+    /* Center align text */
+    text-align: center;
+
+    /* Shadow effect around box */
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}
+
+
+/* 
+Main Heading
+*/
+h1 {
+
+    /* Space below heading */
+    margin-bottom: 15px;
+}
+
+
+/* 
+Paragraph Styling
+*/
+p {
+
+    /* Space below paragraph */
+    margin-bottom: 20px;
+
+    /* Light gray text */
+    color: #cbd5e1;
+}
+
+
+/* 
+========================================
+FORM STYLING
+========================================
+*/
+form {
+
+    /* Flex layout */
+    display: flex;
+
+    /* Places elements vertically */
+    flex-direction: column;
+}
+
+
+/* 
+Input Field Styling
+*/
+input {
+
+    /* Inner spacing */
+    padding: 12px;
+
+    /* Space below each input */
+    margin-bottom: 15px;
+
+    /* Removes default border */
+    border: none;
+
+    /* Rounded corners */
+    border-radius: 6px;
+
+    /* Removes blue outline on click */
+    outline: none;
+
+    /* Text size */
+    font-size: 15px;
+
+    /* Dark background */
+    background-color: #334155;
+
+    /* White input text */
+    color: white;
+}
+
+
+/* 
+Placeholder Text Styling
+*/
+input::placeholder {
+
+    /* Light gray placeholder text */
+    color: #cbd5e1;
+}
+
+
+/* 
+========================================
+BUTTON STYLING
+========================================
+*/
+.btn {
+
+    /* Blue background */
+    background-color: #2563eb;
+
+    /* White text */
+    color: white;
+
+    /* Inner spacing */
+    padding: 12px;
+
+    /* Removes default border */
+    border: none;
+
+    /* Rounded corners */
+    border-radius: 6px;
+
+    /* Text size */
+    font-size: 16px;
+
+    /* Cursor changes to pointer on hover */
+    cursor: pointer;
+
+    /* Smooth hover animation */
+    transition: 0.3s;
+}
+
+
+/* 
+Button Hover Effect
+*/
+.btn:hover {
+
+    /* Darker blue on hover */
+    background-color: #1d4ed8;
+}
+
+
+/* 
+========================================
+LINK STYLING
+========================================
+*/
+a {
+
+    /* Light blue link color */
+    color: #60a5fa;
+
+    /* Removes underline */
+    text-decoration: none;
+}
+
+
+/* 
+Underline appears on hover
+*/
+a:hover {
+
+    text-decoration: underline;
+}
+
+
+/* 
+========================================
+ALERT / ERROR MESSAGE
+========================================
+*/
+.alert {
+
+    /* Red background */
+    background-color: #dc2626;
+
+    /* White text */
+    color: white;
+
+    /* Inner spacing */
+    padding: 12px;
+
+    /* Rounded edges */
+    border-radius: 6px;
+
+    /* Space below alert */
+    margin-bottom: 15px;
+
+    /* Smaller font size */
+    font-size: 14px;
+}
+
+
+/* 
+========================================
+HOME PAGE CONTAINER
+========================================
+*/
+.home-container {
+
+    /* Responsive width */
+    width: 90%;
+
+    /* Maximum width */
+    max-width: 1100px;
+
+    /* Center text */
+    text-align: center;
+}
+
+
+/* 
+Subtitle text
+*/
+.subtitle {
+
+    /* Space above subtitle */
+    margin-top: 15px;
+
+    /* Space below subtitle */
+    margin-bottom: 40px;
+
+    /* Light gray text */
+    color: #cbd5e1;
+
+    /* Text size */
+    font-size: 18px;
+}
+
+
+/* 
+========================================
+FEATURE CARDS CONTAINER
+========================================
+*/
+.card-container {
+
+    /* Flexbox layout */
+    display: flex;
+
+    /* Centers cards */
+    justify-content: center;
+
+    /* Space between cards */
+    gap: 20px;
+
+    /* Wraps cards on smaller screens */
+    flex-wrap: wrap;
+
+    /* Space below cards */
+    margin-bottom: 40px;
+}
+
+
+/* 
+Single Feature Card
+*/
+.feature-card {
+
+    /* Dark background */
+    background-color: #1e293b;
+
+    /* Inner spacing */
+    padding: 25px;
+
+    /* Card width */
+    width: 300px;
+
+    /* Rounded corners */
+    border-radius: 12px;
+
+    /* Shadow effect */
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+
+    /* Smooth hover animation */
+    transition: 0.3s;
+}
+
+
+/* 
+Card hover animation
+*/
+.feature-card:hover {
+
+    /* Moves card slightly upward */
+    transform: translateY(-5px);
+}
+
+
+/* 
+Feature Card Heading
+*/
+.feature-card h2 {
+
+    /* Space below heading */
+    margin-bottom: 15px;
+
+    /* Light blue color */
+    color: #60a5fa;
+}
+
+
+/* 
+Feature Card Paragraph
+*/
+.feature-card p {
+
+    /* Light gray text */
+    color: #cbd5e1;
+
+    /* Better text spacing */
+    line-height: 1.6;
+}
+
+
+/* 
+========================================
+BUTTON GROUP
+========================================
+*/
+.buttons {
+
+    /* Flex layout */
+    display: flex;
+
+    /* Centers buttons */
+    justify-content: center;
+
+    /* Space between buttons */
+    gap: 20px;
+
+    /* Space above section */
+    margin-top: 20px;
+}
+
+
+/* 
+Logout Button
+*/
+.logout-btn {
+
+    /* Red background */
+    background-color: #dc2626;
+}
+
+
+/* 
+Logout Hover Effect
+*/
+.logout-btn:hover {
+
+    /* Darker red */
+    background-color: #b91c1c;
+}
+
+
+/* 
+========================================
+DASHBOARD SECTION
+========================================
+*/
+.dashboard-container {
+
+    /* Responsive width */
+    width: 90%;
+
+    /* Maximum width */
+    max-width: 1200px;
+
+    /* Center text */
+    text-align: center;
+}
+
+
+/* 
+Dashboard Cards Wrapper
+*/
+.dashboard-cards {
+
+    /* Flex layout */
+    display: flex;
+
+    /* Centers cards */
+    justify-content: center;
+
+    /* Space between cards */
+    gap: 20px;
+
+    /* Responsive wrapping */
+    flex-wrap: wrap;
+
+    /* Space above section */
+    margin-top: 40px;
+
+    /* Space below section */
+    margin-bottom: 40px;
+}
+
+
+/* 
+Single Dashboard Card
+*/
+.dashboard-card {
+
+    /* Dark background */
+    background-color: #1e293b;
+
+    /* Card width */
+    width: 320px;
+
+    /* Inner spacing */
+    padding: 25px;
+
+    /* Rounded corners */
+    border-radius: 12px;
+
+    /* Shadow effect */
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+
+    /* Smooth hover animation */
+    transition: 0.3s;
+}
+
+
+/* 
+Dashboard Card Hover
+*/
+.dashboard-card:hover {
+
+    /* Moves card upward */
+    transform: translateY(-5px);
+}
+
+
+/* 
+Dashboard Card Heading
+*/
+.dashboard-card h2 {
+
+    /* Light blue text */
+    color: #60a5fa;
+
+    /* Space below heading */
+    margin-bottom: 15px;
+}
+
+
+/* 
+Dashboard Card Paragraph
+*/
+.dashboard-card p {
+
+    /* Light gray text */
+    color: #cbd5e1;
+
+    /* Space below paragraph */
+    margin-bottom: 20px;
+
+    /* Better readability */
+    line-height: 1.6;
+}
+
+
+/* 
+========================================
+PROJECT LIST
+========================================
+*/
+.project-list {
+
+    /* Removes bullet points */
+    list-style: none;
+
+    /* Space above list */
+    margin-top: 15px;
+}
+
+
+/* 
+Individual Project Item
+*/
+.project-list li {
+
+    /* Dark gray background */
+    background-color: #334155;
+
+    /* Space below each item */
+    margin-bottom: 10px;
+
+    /* Inner spacing */
+    padding: 10px;
+
+    /* Rounded edges */
+    border-radius: 6px;
+
+    /* White text */
+    color: white;
+}
+
+
+/* 
+========================================
+ROOM ITEM
+========================================
+*/
+.room-item {
+
+    /* Dark background */
+    background-color: #334155;
+
+    /* Space below room */
+    margin-bottom: 15px;
+
+    /* Inner spacing */
+    padding: 20px;
+
+    /* Rounded corners */
+    border-radius: 10px;
+
+    /* Center align text */
+    text-align: center;
+}
+
+
+/* 
+========================================
+ROOM CODE SECTION
+========================================
+Contains room code + copy button
+*/
+.room-code-section {
+
+    /* Flexbox layout */
+    display: flex;
+
+    /* Centers horizontally */
+    justify-content: center;
+
+    /* Centers vertically */
+    align-items: center;
+
+    /* Space between elements */
+    gap: 10px;
+
+    /* Space below section */
+    margin-bottom: 15px;
+}
+
+
+/* 
+========================================
+DELETE BUTTON
+========================================
+*/
+.delete-btn {
+
+    /* Fixed width */
+    width: 120px;
+
+    /* Makes button block element */
+    display: block;
+
+    /* Centers button */
+    margin: 0 auto;
+
+    /* Red background */
+    background-color: #dc2626;
+
+    /* Removes border */
+    border: none;
+
+    /* Inner spacing */
+    padding: 10px;
+
+    /* Rounded corners */
+    border-radius: 6px;
+
+    /* White text */
+    color: white;
+
+    /* Pointer cursor on hover */
+    cursor: pointer;
+}
+
+
+/* 
+Delete Button Hover Effect
+*/
+.delete-btn:hover {
+
+    /* Darker red */
+    background-color: #b91c1c;
+}

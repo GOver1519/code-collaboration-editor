@@ -1,0 +1,235 @@
+/* 
+========================================
+GLOBAL STYLES
+========================================
+These styles apply to the entire page
+*/
+
+/* 
+body = entire webpage body
+Used to set default spacing, font, colors, etc.
+*/
+body {
+
+    /* Removes default browser margin */
+    margin: 0;
+
+    /* Removes default browser padding */
+    padding: 0;
+
+    /* Sets font for entire application */
+    font-family: Arial, sans-serif;
+
+    /* Dark blue background color */
+    background-color: #0f172a;
+
+    /* Default text color = white */
+    color: white;
+}
+
+
+/* 
+========================================
+ROOM CONTAINER
+========================================
+Main wrapper that holds all room content
+*/
+.room-container {
+
+    /* Takes 90% width of screen */
+    width: 90%;
+
+    /* Centers container horizontally */
+    margin: auto;
+
+    /* Adds spacing inside container */
+    padding: 20px;
+}
+
+
+/* 
+========================================
+TOP BAR
+========================================
+Contains:
+- Room title
+- Leave button
+*/
+
+/* 
+display: flex
+Places items side-by-side horizontally
+*/
+.top-bar {
+
+    display: flex;
+
+    /* Pushes elements to opposite ends */
+    justify-content: space-between;
+
+    /* Aligns items vertically in center */
+    align-items: center;
+
+    /* Adds space below top bar */
+    margin-bottom: 20px;
+}
+
+
+/* 
+Leave Room Button Styling
+*/
+.leave-btn {
+
+    /* Red background */
+    background-color: #dc2626;
+
+    /* White text */
+    color: white;
+
+    /* Space inside button */
+    padding: 10px 18px;
+
+    /* Rounded corners */
+    border-radius: 6px;
+
+    /* Removes underline from link */
+    text-decoration: none;
+}
+
+
+/* 
+========================================
+EDITOR SECTION
+========================================
+Wrapper around code editor
+*/
+.editor-section {
+
+    /* Adds spacing below editor */
+    margin-bottom: 20px;
+}
+
+
+/* 
+Code Editor Textarea
+*/
+#code-editor {
+
+    /* Full width */
+    width: 100%;
+
+    /* Fixed height */
+    height: 400px;
+
+    /* Dark editor background */
+    background-color: #1e293b;
+
+    /* White text */
+    color: white;
+
+    /* Removes default border */
+    border: none;
+
+    /* Rounded edges */
+    border-radius: 10px;
+
+    /* Space inside textarea */
+    padding: 15px;
+
+    /* Text size */
+    font-size: 16px;
+
+    /* Prevents user from resizing textarea */
+    resize: none;
+}
+
+
+/* 
+========================================
+EDITOR CONTROLS
+========================================
+Contains:
+- Language dropdown
+- Run button
+*/
+.editor-controls {
+
+    /* Flex layout for controls */
+    display: flex;
+
+    /* Space between elements */
+    gap: 15px;
+
+    /* Space below controls */
+    margin-bottom: 20px;
+}
+
+
+/* 
+Shared styling for:
+- select dropdown
+- buttons
+*/
+.editor-controls select,
+.editor-controls button {
+
+    /* Inner spacing */
+    padding: 10px 15px;
+
+    /* Removes default border */
+    border: none;
+
+    /* Rounded corners */
+    border-radius: 6px;
+
+    /* Text size */
+    font-size: 15px;
+}
+
+
+/* 
+Specific styling only for button
+*/
+.editor-controls button {
+
+    /* Blue background */
+    background-color: #2563eb;
+
+    /* White text */
+    color: white;
+
+    /* Mouse pointer appears on hover */
+    cursor: pointer;
+}
+
+
+/* 
+========================================
+OUTPUT SECTION
+========================================
+Displays execution result/output
+*/
+.output-section {
+
+    /* Space above output section */
+    margin-top: 20px;
+}
+
+
+/* 
+Output display box
+*/
+.output-box {
+
+    /* Dark background */
+    background-color: #1e293b;
+
+    /* Space inside output box */
+    padding: 15px;
+
+    /* Rounded corners */
+    border-radius: 10px;
+
+    /* Minimum height even if empty */
+    min-height: 120px;
+}

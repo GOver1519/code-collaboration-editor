@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- 
+    ========================================
+    META TAGS
+    ========================================
+    -->
+
+    <!-- Defines character encoding -->
+    <meta charset="UTF-8">
+
+    <!-- Makes webpage responsive on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Browser tab title -->
+    <title>Collaborative Code Editor</title>
+
+    <!-- 
+    Linking external CSS file
+
+    url_for('static', filename='css/style.css')
+    dynamically generates correct path for static file
+    -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- 
+    ========================================
+    MAIN CONTAINER
+    ========================================
+    This container holds:
+    - heading
+    - subtitle
+    - login/register buttons
+    -->
+    <div class="container">
+
+        <!-- Main project title -->
+        <h1>Collaborative Code Editor</h1>
+
+        <!-- Small description -->
+        <p>
+
+            Write and collaborate on code in real time
+
+        </p>
+
+
+        <!-- 
+        ========================================
+        BUTTON SECTION
+        ========================================
+        -->
+        <div class="buttons">
+
+            <!-- 
+            Login Button
+
+            url_for('login')
+            dynamically creates login route URL
+            -->
+            <a href="{{ url_for('login') }}" class="btn">
+
+                Login
+
+            </a>
+
+
+            <!-- 
+            Register Button
+
+            Redirects user to register page
+            -->
+            <a href="{{ url_for('register') }}" class="btn">
+
+                Register
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- 
+    ========================================
+    JAVASCRIPT FILE
+    ========================================
+
+    Loads external JavaScript file
+    -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

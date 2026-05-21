@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- 
+    ========================================
+    META TAGS
+    ========================================
+    -->
+
+    <!-- Defines character encoding -->
+    <meta charset="UTF-8">
+
+    <!-- Makes website responsive on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Browser tab title -->
+    <title>Home</title>
+
+    <!-- 
+    Linking external CSS file
+
+    url_for('static', filename='css/style.css')
+    dynamically generates correct path for CSS file
+    -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- 
+    ========================================
+    MAIN HOME CONTAINER
+    ========================================
+    Holds all homepage content
+    -->
+    <div class="home-container">
+
+        <!-- Main heading -->
+        <h1>Welcome to CodeCollab</h1>
+
+        <!-- Small subtitle/description -->
+        <p class="subtitle">
+
+            Collaborate, write and share code in real time
+            with your friends and team members.
+
+        </p>
+
+
+        <!-- 
+        ========================================
+        FEATURE CARDS CONTAINER
+        ========================================
+        Contains all feature cards
+        -->
+        <div class="card-container">
+
+
+            <!-- 
+            ========================================
+            FEATURE CARD 1
+            ========================================
+            -->
+            <div class="feature-card">
+
+                <!-- Feature title -->
+                <h2>Real-Time Collaboration</h2>
+
+                <!-- Feature description -->
+                <p>
+
+                    Work together with multiple users
+                    in the same coding room instantly.
+
+                </p>
+
+            </div>
+
+
+            <!-- 
+            ========================================
+            FEATURE CARD 2
+            ========================================
+            -->
+            <div class="feature-card">
+
+                <!-- Feature title -->
+                <h2>Multi Language Support</h2>
+
+                <!-- Feature description -->
+                <p>
+
+                    Write code in Python, JavaScript,
+                    Java and many more languages.
+
+                </p>
+
+            </div>
+
+
+            <!-- 
+            ========================================
+            FEATURE CARD 3
+            ========================================
+            -->
+            <div class="feature-card">
+
+                <!-- Feature title -->
+                <h2>Fast & Secure</h2>
+
+                <!-- Feature description -->
+                <p>
+
+                    Smooth coding experience with
+                    secure authentication system.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- 
+        ========================================
+        BUTTON SECTION
+        ========================================
+        -->
+        <div class="buttons">
+
+            <!-- 
+            Dashboard Button
+
+            url_for('dashboard')
+            dynamically generates dashboard route URL
+            -->
+            <a href="{{ url_for('dashboard') }}" class="btn">
+
+                Dashboard
+
+            </a>
+
+
+            <!-- 
+            Logout Button
+
+            Redirects user to logout route
+            -->
+            <a href="{{ url_for('logout') }}" class="btn logout-btn">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

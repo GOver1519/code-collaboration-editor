@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- 
+    ========================================
+    META TAGS
+    ========================================
+    -->
+
+    <!-- Defines character encoding -->
+    <meta charset="UTF-8">
+
+    <!-- Makes webpage responsive on all devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Browser tab title -->
+    <title>Register</title>
+
+    <!-- 
+    Linking external CSS file
+
+    url_for('static', filename='css/style.css')
+    dynamically generates correct static file path
+    -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- 
+    ========================================
+    REGISTER CONTAINER
+    ========================================
+    -->
+    <div class="container">
+
+        <!-- Main heading -->
+        <h1>Create account</h1>
+
+
+        <!-- 
+        ========================================
+        FLASH MESSAGE SECTION
+        ========================================
+
+        Used to display:
+        - validation errors
+        - password mismatch
+        - successful registration messages
+        -->
+
+        {% with messages = get_flashed_messages() %}
+
+            <!-- Checks if flash messages exist -->
+            {% if messages %}
+
+                <!-- Loop through all messages -->
+                {% for message in messages %}
+
+                <!-- Display individual message -->
+                <div class="alert">
+
+                    {{ message }}
+
+                </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <!-- 
+        ========================================
+        REGISTRATION FORM
+        ========================================
+
+        method="POST"
+        Sends user data securely to backend
+        -->
+        <form method="POST">
+
+
+            <!-- 
+            Username Input Field
+
+            name="username"
+            becomes key that backend accesses using:
+            request.form['username']
+            -->
+            <input
+                type="text"
+                name="username"
+                placeholder="Enter Username"
+            >
+
+
+            <!-- Email Input Field -->
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter Email"
+            >
+
+
+            <!-- 
+            Password Input Field
+
+            type="password"
+            hides entered characters
+            -->
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter Password"
+            >
+
+
+            <!-- Confirm Password Field -->
+            <input
+                type="password"
+                name="confirm_password"
+                placeholder="Confirm Password"
+            >
+
+
+            <!-- Register Button -->
+            <button type="submit" class="btn">
+
+                Register
+
+            </button>
+
+        </form>
+
+
+        <!-- 
+        ========================================
+        LOGIN REDIRECT LINK
+        ========================================
+
+        Allows already registered users
+        to go back to login page
+        -->
+        <p>
+
+            Already have an account?
+
+            <a href="#">
+
+                Login
+
+            </a>
+
+        </p>
+
+    </div>
+
+
+    <!-- 
+    ========================================
+    JAVASCRIPT FILE
+    ========================================
+
+    Loads external JavaScript functionality
+    -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- 
+    ========================================
+    META TAGS
+    ========================================
+    -->
+
+    <!-- Defines character encoding -->
+    <meta charset="UTF-8">
+
+    <!-- Makes webpage responsive on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Browser tab title -->
+    <title>Login</title>
+
+    <!-- 
+    Linking external CSS file
+
+    url_for('static', filename='css/style.css')
+    dynamically generates correct path
+    -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- 
+    ========================================
+    LOGIN CONTAINER
+    ========================================
+    -->
+    <div class="container">
+
+        <!-- Main heading -->
+        <h1>Login</h1>
+
+        <!-- Small subtitle -->
+        <p>
+
+            Welcome back to CodeCollab
+
+        </p>
+
+
+        <!-- 
+        ========================================
+        FLASH MESSAGE SECTION
+        ========================================
+
+        Used to display:
+        - login errors
+        - success messages
+        - validation messages
+        -->
+
+        {% with messages = get_flashed_messages() %}
+
+            <!-- Checks if messages exist -->
+            {% if messages %}
+
+                <!-- Loop through all messages -->
+                {% for message in messages %}
+
+                    <!-- Display single message -->
+                    <div class="flash">
+
+                        {{ message }}
+
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <!-- 
+        ========================================
+        LOGIN FORM
+        ========================================
+
+        method="POST"
+        Sends form data securely to backend
+        -->
+        <form method="POST">
+
+
+            <!-- 
+            Email Input Field
+            -->
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter email id"
+            >
+
+
+            <!-- 
+            Password Input Field
+
+            type="password"
+            hides entered text
+            -->
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter password"
+            >
+
+
+            <!-- Login Button -->
+            <button type="submit" class="btn">
+
+                Login
+
+            </button>
+
+        </form>
+
+
+        <!-- 
+        ========================================
+        REGISTER LINK
+        ========================================
+
+        Redirects user to registration page
+        -->
+        <p>
+
+            Don't have an account?
+
+            <a href="{{ url_for('register') }}">
+
+                Register here
+
+            </a>
+
+        </p>
+
+    </div>
+
+</body>
+</html>

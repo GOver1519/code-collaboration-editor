@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <!-- 
+    ========================================
+    META TAGS
+    ========================================
+    -->
+
+    <!-- Defines character encoding -->
+    <meta charset="UTF-8" />
+
+    <!-- Makes webpage responsive -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
+    <!-- Browser tab title -->
+    <title>Code Room</title>
+
+    <!-- 
+    Linking external CSS file
+
+    room.css contains styling for:
+    - editor
+    - room layout
+    - buttons
+    - output section
+    -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/room.css') }}"
+    />
+
+</head>
+
+<body>
+
+    <!-- 
+    ========================================
+    MAIN ROOM CONTAINER
+    ========================================
+    -->
+    <div class="room-container">
+
+
+        <!-- 
+        ========================================
+        TOP NAVBAR
+        ========================================
+        -->
+        <div class="top-bar">
+
+            <div>
+
+                <!-- 
+                Room Name
+
+                room[2] = room name
+                -->
+                <h2>{{ room[2] }}</h2>
+
+                <!-- 
+                Room Code
+
+                room[1] = room code
+                -->
+                <p>
+
+                    Room Code:
+
+                    <strong>{{ room[1] }}</strong>
+
+                </p>
+
+            </div>
+
+
+            <!-- 
+            Leave Room Button
+
+            Redirects user back to dashboard
+            -->
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="leave-btn"
+            >
+
+                Leave Room
+
+            </a>
+
+        </div>
+
+
+        <!-- 
+        ========================================
+        EDITOR FORM
+        ========================================
+
+        Used for:
+        - saving code
+        - running code
+        -->
+        <form
+            action="/save-code/{{ room[1] }}"
+            method="POST"
+        >
+
+
+            <!-- 
+            ========================================
+            CODE EDITOR SECTION
+            ========================================
+            -->
+            <div class="editor-section">
+
+                <!-- 
+                Main Code Editor
+
+                room[4] = saved code
+
+                If room[4] exists:
+                show saved code
+
+                else:
+                show empty editor
+                -->
+                <textarea
+                    name="code"
+                    id="code-editor"
+                    placeholder="Start writing code here..."
+                >{{ room[4] if room[4] else '' }}</textarea>
+
+            </div>
+
+
+            <!-- 
+            ========================================
+            EDITOR CONTROLS
+            ========================================
+            -->
+            <div class="editor-controls">
+
+
+                <!-- 
+                ========================================
+                LANGUAGE DROPDOWN
+                ========================================
+                -->
+                <select name="language" id="language">
+
+
+                    <!-- Python Option -->
+                    <option
+                        value="Python"
+
+                        <!-- 
+                        Select Python automatically
+                        if saved language is Python
+                        -->
+                        {% if room[5] == "Python" %}
+                            selected
+                        {% endif %}
+                    >
+
+                        Python
+
+                    </option>
+
+
+                    <!-- JavaScript Option -->
+                    <option
+                        value="JavaScript"
+
+                        <!-- Auto select JavaScript -->
+                        {% if room[5] == "JavaScript" %}
+                            selected
+                        {% endif %}
+                    >
+
+                        JavaScript
+
+                    </option>
+
+                </select>
+
+
+                <!-- 
+                ========================================
+                RUN CODE BUTTON
+                ========================================
+
+                formaction overrides form action
+                and sends request to:
+                /run-code/<room_code>
+                -->
+                <button
+                    type="submit"
+                    formaction="/run-code/{{ room[1] }}"
+                >
+
+                    Run Code
+
+                </button>
+
+
+                <!-- 
+                ========================================
+                SAVE CODE BUTTON
+                ========================================
+
+                Uses default form action:
+                /save-code/<room_code>
+                -->
+                <button type="submit">
+
+                    Save Code
+
+                </button>
+
+            </div>
+
+        </form>
+
+
+        <!-- 
+        ========================================
+        OUTPUT SECTION
+        ========================================
+        -->
+        <div class="output-section">
+
+            <!-- Output heading -->
+            <h3>Output</h3>
+
+
+            <!-- Output display box -->
+            <div class="output-box">
+
+
+                <!-- 
+                If output exists:
+                display execution result
+                -->
+                {% if output %}
+
+                    <!-- 
+                    <pre> preserves formatting,
+                    spaces and line breaks
+                    -->
+                    <pre>{{ output }}</pre>
+
+                {% else %}
+
+                    <!-- Default message -->
+                    Your output will appear here
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- 
+    ========================================
+    SOCKET.IO CDN
+    ========================================
+
+    Loads Socket.IO library for:
+    - realtime communication
+    - websocket connection
+    -->
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
+
+    <!-- 
+    ========================================
+    REALTIME COLLABORATION SCRIPT
+    ========================================
+    -->
+    <script>
+
+        /*
+        ========================================
+        CONNECT TO SOCKET SERVER
+        ========================================
+
+        io() connects frontend to backend
+        websocket server
+        */
+        const socket = io();
+
+
+        /*
+        ========================================
+        CURRENT ROOM CODE
+        ========================================
+
+        room[1] = room code
+        */
+        const roomCode = "{{ room[1] }}";
+
+
+        /*
+        ========================================
+        GET CODE EDITOR ELEMENT
+        ========================================
+        */
+        const editor = document.getElementById("code-editor");
+
+
+        /*
+        ========================================
+        JOIN WEBSOCKET ROOM
+        ========================================
+
+        Sends room code to backend
+        so user joins correct collaboration room
+        */
+        socket.emit("join", {
+
+            room_code: roomCode
+
+        });
+
+
+        /*
+        ========================================
+        SEND REALTIME CODE UPDATES
+        ========================================
+
+        input event triggers whenever user types
+        */
+        editor.addEventListener("input", () => {
+
+            /*
+            Emit code_change event
+            and send:
+            - room code
+            - latest editor content
+            */
+            socket.emit("code_change", {
+
+                room_code: roomCode,
+
+                code: editor.value
+
+            });
+
+        });
+
+
+        /*
+        ========================================
+        RECEIVE REALTIME CODE UPDATES
+        ========================================
+
+        Triggered when backend broadcasts changes
+        from another user
+        */
+        socket.on("update_code", (data) => {
+
+
+            /*
+            Store current cursor position
+
+            Prevents cursor jumping issue
+            */
+            const cursorPosition = editor.selectionStart;
+
+
+            /*
+            Update editor content
+            with latest code
+            */
+            editor.value = data.code;
+
+
+            /*
+            Restore cursor position
+            after updating content
+            */
+            editor.selectionStart = cursorPosition;
+
+            editor.selectionEnd = cursorPosition;
+
+        });
+
+    </script>
+
+</body>
+
+</html>
