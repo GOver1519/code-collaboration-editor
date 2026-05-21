@@ -1,46 +1,26 @@
 # ============================================================
-# IMPORT POSTGRESQL LIBRARY
+# IMPORT LIBRARIES
 # ============================================================
 
-# psycopg2 is a PostgreSQL adapter for Python
-# It allows Python applications to communicate
-# with PostgreSQL databases
+import os
 import psycopg2
 
-
 # ============================================================
-# DATABASE CONNECTION
-# ============================================================
-
-# psycopg2.connect() creates connection between:
-# Python application ↔ PostgreSQL database
-conn = psycopg2.connect(
-
-    # Database server location
-    # localhost means database is running on same computer
-    host="localhost",
-
-    # Database name inside PostgreSQL
-    database="collab_editor",
-
-    # PostgreSQL username
-    user="postgres",
-
-    # PostgreSQL password
-    password="Aa123456!12"
-)
-
-
-# ============================================================
-# DATABASE CURSOR
+# GET DATABASE URL FROM RENDER ENVIRONMENT VARIABLES
 # ============================================================
 
-# cursor is used to execute SQL queries like:
-# - SELECT
-# - INSERT
-# - UPDATE
-# - DELETE
-#
-# Think of cursor as a communication tool
-# between Python and PostgreSQL
+# Render automatically provides DATABASE_URL when you add it
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+# Safety check (helps debugging on Render)
+if not DATABASE_URL:
+    raise Exception("DATABASE_URL not found in environment variables")
+
+# ============================================================
+# CONNECT TO POSTGRESQL (RENDER CLOUD DB)
+# ============================================================
+
+conn = psycopg2.connect(DATABASE_URL)
+
+# Cursor used to execute SQL queries
 cursor = conn.cursor()
